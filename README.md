@@ -50,7 +50,7 @@ This repository is maintained independently and has no affiliation with the orig
 
 7. Build with
     ```
-    python tools/progen_compile.py -t make_gcc_arm --clean --parallel kl26z_bl kl26z_g2_nano_if
+    python tools/progen_compile.py -t make_gcc_arm --clean --parallel kl26z_g2_nano_bl kl26z_g2_nano_if
     ```
 
 
@@ -80,8 +80,8 @@ BOTTOM VIEW
 2. Connect the `SWD_CLK`, `SWD_DIO`, and `GND` pins. The `RESET_B` pin is optional.
 
 3. Use the LinkFlash GUI tool and program the HIC with the two `*.hex` files
-    * `projectfiles/make_gcc_arm/kl26z_bl/build/kl26z_bl_crc.hex`
-    * `projectfiles/make_gcc_arm/kl26z_if/build/kl26z_if_crc.hex`
+    * `projectfiles/make_gcc_arm/kl26z_g2_nano_bl/build/kl26z_g2_nano_bl_crc.hex`
+    * `projectfiles/make_gcc_arm/kl26z_g2_nano_if/build/kl26z_g2_nano_if_crc.hex`
 
 
 
