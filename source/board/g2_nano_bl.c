@@ -41,6 +41,6 @@ void board_bootloader_init() {
     PIN_BOOT_MODE_0_GPIO->PCOR = PIN_BOOT_MODE_0;
     PIN_BOOT_MODE_1_GPIO->PSOR = PIN_BOOT_MODE_1;
 
-    // Add pull-up resistor to PIN_nRESET
-    PIN_nRESET_PORT->PCR[PIN_nRESET_BIT] |= PORT_PCR_PE_MASK | PORT_PCR_PS_MASK;
+    // Add pull-up resistor to PIN_SW_RESET
+    PIN_SW_RESET_PORT->PCR[PIN_SW_RESET_BIT] |= PORT_PCR_PE_MASK | PORT_PCR_PS_MASK;
 }

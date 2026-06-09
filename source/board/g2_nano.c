@@ -59,6 +59,18 @@ static void set_boot_mode(uint8_t state) {
 
 
 
+static void reset_target_mcu() {
+    // Make sure PIN_nRESET is enabled
+    PIN_nRESET_GPIO->PDDR |= PIN_nRESET;
+
+    // Wiggle the target MCU's reset pin
+    PIN_nRESET_OUT(0);  // Assert RESET_N
+    Delayms(1);         // Wait
+    PIN_nRESET_OUT(1);  // Release RESET_N
+}
+
+
+
 /*
     Handles custom CMSIS-DAP vendor commands.
 
@@ -84,14 +96,8 @@ uint32_t DAP_ProcessVendorCommandEx(const uint8_t* request, uint8_t* response) {
             }
             else if(operation_byte == OPERATION_SERIAL_DOWNLOADER
                 || operation_byte == OPERATION_INTERNAL_BOOT) {
-                    // Set BOOT_MODE[1:0] to value of operation byte
                     set_boot_mode(operation_byte);
-
-                    // Reset the target microcontroller
-                    PIN_nRESET_OUT(0); // Assert RESET_N
-                    Delayms(10);
-                    PIN_nRESET_OUT(1); // Release RESET_N
-
+                    reset_target_mcu();
                     status = STATUS_SUCCESS;
             }
 
