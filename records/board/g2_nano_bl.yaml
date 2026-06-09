@@ -1,0 +1,8 @@
+common:
+    macros:
+        - IO_CONFIG_OVERRIDE
+    includes:
+            - source/board/override_g2_nano
+    sources:
+        board:
+            - source/board/g2_nano_bl.c

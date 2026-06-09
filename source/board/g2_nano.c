@@ -60,24 +60,6 @@ static void set_boot_mode(uint8_t state) {
 
 
 /*
-    Board-specific initialization code
-*/
-static void prerun_board_config() {
-    // Configure pins as GPIO
-    PIN_BOOT_MODE_0_PORT->PCR[PIN_BOOT_MODE_0_BIT] = PORT_PCR_MUX(1);
-    PIN_BOOT_MODE_1_PORT->PCR[PIN_BOOT_MODE_1_BIT] = PORT_PCR_MUX(1);
-
-    // Configure pins as output
-    PIN_BOOT_MODE_0_GPIO->PDDR |= PIN_BOOT_MODE_0;
-    PIN_BOOT_MODE_1_GPIO->PDDR |= PIN_BOOT_MODE_1;
-
-    // Initialize BOOT_MODE[1:0] pins
-    set_boot_mode(OPERATION_INTERNAL_BOOT);
-}
-
-
-
-/*
     Handles custom CMSIS-DAP vendor commands.
 
     This function overrides the definition in source/daplink/cmsis-dap/DAP.c
@@ -148,9 +130,6 @@ const board_info_t g_board_info = {
     .daplink_url_name = "G2-NANO HTM",
     .daplink_drive_name = "DEV-G2-NANO",
     .daplink_target_url = "https://www.thetamachines.com/",
-
-    // Board initialization
-    .prerun_board_config = prerun_board_config,
 
     // CMSIS-DAP Board Strings
     .board_vendor = "Theta Machines",
